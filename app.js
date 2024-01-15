@@ -3,6 +3,6 @@ const app = express(); // call the express function and return value save to app
 require("./models/index.js");
 app.get("/", (req, res, next) => {
   // '/' is home route
-  res.send("Hello World");
+  res.send("Hello Book Borrow System");
 });
 module.exports = app;
