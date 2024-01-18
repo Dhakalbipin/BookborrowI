@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
   userHistory: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: Order,
+      ref: "Order",
     },
   ],
   userType: {

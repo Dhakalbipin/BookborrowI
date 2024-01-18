@@ -4,11 +4,11 @@ const Order = require("./order");
 const PaymentSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: User,
+    ref: "User",
   },
   orderId: {
     type: mongoose.Schema.Type.orderId,
-    ref: Order,
+    ref: "Order",
   },
   amount: {
     type: Number,

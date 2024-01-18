@@ -5,12 +5,12 @@ const Book = require("./book");
 const orderSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: User,
+    ref: "User",
     required: true,
   },
   bookId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: Book,
+    ref: "Book",
     required: true,
   },
 
