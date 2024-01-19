@@ -15,7 +15,7 @@ body {
 }
 
 .form-container {
-  padding: 40px;
+  padding: 60px;
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   width: 400px;
@@ -61,7 +61,7 @@ textarea {
 }
 
 button {
-  background-color: #4caf50;
+  background-color: #6fdf73;
   color: #fff;
   padding: 12px;
   border: none;
@@ -71,7 +71,7 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #19df15;
 }
 
 .login-prompt {
@@ -139,7 +139,7 @@ textarea {
 }
 
 .login-button {
-  background-color: #4caf50;
+  background-color: #6fdf73;
   color: #fff;
   padding: 12px;
   border: none;
@@ -149,7 +149,7 @@ textarea {
 }
 
 .login-button:hover {
-  background-color: #45a049;
+  background-color: #19df15;
 }
 
 .error-message {
