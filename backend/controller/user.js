@@ -56,4 +56,68 @@ module.exports = {
       next(error);
     }
   },
+  async update(req, res, next) {
+    try {
+      const id = req.params.id;
+      const {
+        name,
+        userName,
+        password,
+        email,
+        phone,
+        address,
+        holdingAmount,
+        userHistory,
+        userType,
+      } = req.body;
+
+      if (password && password.length < 4) {
+        return res
+          .status(400)
+          .send("Password cannot be less than 4 characters");
+      }
+
+      const passwordHash = password
+        ? await bcrypt.hash(password, 10)
+        : undefined;
+
+      const updatedUser = await User.findByIdAndUpdate(
+        id,
+        {
+          $set: {
+            name,
+            userName,
+            passwordHash,
+            email,
+            phone,
+            address,
+            holdingAmount,
+            userHistory,
+            userType,
+          },
+        },
+        { new: true }
+      );
+      if (!updatedUser) {
+        return res.status(404).send("User not found");
+      }
+      res.json(updatedUser);
+    } catch (error) {
+      next(error);
+    }
+  },
+  async remove(req, res, next) {
+    try {
+      const id = req.params.id;
+      const deletedUser = await User.findByIdAndDelete(id);
+
+      if (!deletedUser) {
+        return res.status(404).send("User not found");
+      }
+
+      res.json(deletedUser);
+    } catch (error) {
+      next(error);
+    }
+  },
 };
