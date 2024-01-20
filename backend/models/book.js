@@ -28,6 +28,10 @@ const bookSchema = new mongoose.Schema({
   amount: {
     type: Number,
   },
+  photo: {
+    type: String,
+    required: true,
+  },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
