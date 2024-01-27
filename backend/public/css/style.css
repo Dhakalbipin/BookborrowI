@@ -7,7 +7,10 @@ footer {
   color: aliceblue;
   height: 10vh;
 }
-/* this css is for header */
+
+/*====================================================
+ ==============this css is for header =================
+ ============*/
 body {
   margin: 0;
   padding: 0;
@@ -21,7 +24,7 @@ body {
     #90ee90
   ); /* Sky blue to light green gradient */
   color: white;
-  padding: 10px;
+  padding: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,20 +38,20 @@ body {
 .signup-form,
 .login-form {
   background-color: white;
-  padding: 10px;
+  padding: 30px;
   border-radius: 10px;
   border: none;
 }
 
-.signup-form input,
+/* .signup-form input,
 .login-form input {
   background-color: white;
   color: black;
   padding: 8px;
   border: black;
   cursor: pointer;
-  border-radius: 7px;
-}
+  border-radius: 7px; */
+/* } */
 
 .logo img {
   width: 100px; /* Adjust the width as needed */
@@ -64,7 +67,7 @@ body {
 .menu {
   list-style: none;
   margin: 5;
-  padding: 0;
+  padding: 5;
 }
 
 .menu li {
@@ -95,34 +98,29 @@ body {
 
 /* Remove hover effect */
 .menu a:hover {
-  text-decoration: none;
+  text-decoration: black;
 }
-/* this is the css of signup form */
+/*==========================This is the signup code============*/
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
 }
 
 .container {
   max-width: 400px;
-  margin: 0 auto;
-}
-
-.form-container {
-  background-color: #f1f1f1;
-  padding: 20px;
+  margin: 0px auto;
+  padding: 0px;
+  background-color: #fff;
   border-radius: 5px;
-  margin-top: 50px;
+  box-shadow: 0 0 10px rgba(6, 0, 0, 0.1);
+  text-align: center;
+  border-color: #060000;
 }
 
 h1 {
-  text-align: center;
   color: #333;
-}
-
-.required-message {
-  color: red;
 }
 
 .form-group {
@@ -132,66 +130,72 @@ h1 {
 label {
   display: block;
   margin-bottom: 5px;
-  color: #333;
+  color: #0a0000;
+}
+
+.required {
+  color: red;
 }
 
 input,
 select {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   margin-bottom: 10px;
   box-sizing: border-box;
+  border: 2px solid #060000;
+  border-radius: 7px;
 }
 
-select {
-  margin-bottom: 15px;
+.signup-form {
+  text-align: left;
 }
 
-.signup-form input[type="submit"] {
-  background-color: blue; /* Sky blue color */
+.green-button {
+  background-color: green;
   color: white;
   cursor: pointer;
+  padding: 20px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
 }
 
 .login-prompt {
-  text-align: center;
+  margin-top: 20px;
 }
 
 .login-link {
-  color: white; /* Sky blue color */
-  cursor: pointer;
+  color: #4caf50;
+  text-decoration: none;
 }
 
-.login-link:hover {
-  text-decoration: underline;
-  color: #4682b4; /* Darker shade of sky blue on hover */
-}
-/* this css is for login form */
+/* ========================End of the Singup================== */
+
+/* ======================this is the sign in css============== */
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
 }
 
-.container {
+.login-container {
   max-width: 400px;
-  margin: 0 auto;
-}
-
-.form-container {
-  background-color: #f1f1f1;
+  margin: 50px auto;
   padding: 20px;
+  background-color: #fff;
   border-radius: 5px;
-  margin-top: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 h1 {
-  text-align: center;
   color: #333;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 label {
@@ -202,14 +206,15 @@ label {
 
 input {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   margin-bottom: 10px;
   box-sizing: border-box;
+  border: 2px solid #080000;
+  border-radius: 7px;
 }
 
-.login-button,
-.register-button {
-  background-color: blue; /* Sky blue color */
+.login-button {
+  background-color: #4caf50;
   color: white;
   cursor: pointer;
   padding: 10px;
@@ -218,73 +223,18 @@ input {
   border-radius: 5px;
 }
 
-.register-button {
-  margin-top: 10px;
-}
-
 .error-message {
-  color: red;
-  text-align: center;
-  margin-top: 10px;
-}
-/* this is the sign in css */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
-
-.container {
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.form-container {
-  background-color: #f1f1f1;
-  padding: 20px;
-  border-radius: 5px;
-  margin-top: 50px;
-}
-
-h1 {
-  text-align: center;
-  color: #333;
-}
-
-.form-group {
+  color: #ff3333;
   margin-bottom: 15px;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-  color: #333;
+.no-account {
+  margin-top: 20px;
 }
 
-input {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  box-sizing: border-box;
+.signup-link {
+  color: #4caf50;
+  text-decoration: none;
 }
 
-.login-button,
-.register-button {
-  background-color: #87ceeb; /* Sky blue color */
-  color: white;
-  cursor: pointer;
-  padding: 10px;
-  width: 100%;
-  border: none;
-  border-radius: 5px;
-}
-
-.register-button {
-  margin-top: 10px;
-}
-
-.error-message {
-  color: red;
-  text-align: center;
-  margin-top: 10px;
-}
+/* ==================================End of the Login code============================ */

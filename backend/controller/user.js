@@ -11,7 +11,7 @@ module.exports = {
   },
   async create(req, res, next) {
     try {
-      console.log("test")
+      console.log("test");
       const {
         name,
         userName,
@@ -46,7 +46,6 @@ module.exports = {
       const savedUser = await user.save();
       // res.status(201).json(savedUser);
       res.redirect("/");
-
     } catch (error) {
       next(error);
     }

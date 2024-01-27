@@ -16,7 +16,9 @@ const bookSchema = new mongoose.Schema({
   },
   stock: {
     type: Number,
-    required: true,
+  },
+  aStock: {
+    type: String,
   },
   bookValue: {
     type: Number,
@@ -35,6 +37,14 @@ const bookSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
+  },
+  rating: {
+    type: Number,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
   },
 });
 bookSchema.plugin(uniqueValidator);

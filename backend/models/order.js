@@ -26,10 +26,6 @@ const orderSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  reviews: {
-    type: String,
-    // You can customize this field based on your requirements
-  },
 });
 orderSchema.plugin(UniqueValidator);
 module.exports = mongoose.model("Order", orderSchema);

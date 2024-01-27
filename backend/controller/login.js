@@ -28,13 +28,13 @@ module.exports = {
       const token = jwt.sign(userForToken, process.env.SECRET, {
         expiresIn: 60 * 30,
       });
-      res.redirect("/");
-      // res.status(200).send({
-      //   token,
-      //   userName: user.userName,
-      //   name: user.name,
-      //   id: user._id,
-      // });
+      // res.redirect("/");
+      res.status(200).send({
+        token,
+        userName: user.userName,
+        name: user.name,
+        id: user._id,
+      });
     } catch (error) {
       next(error);
     }
