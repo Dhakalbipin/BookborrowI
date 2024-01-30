@@ -7,7 +7,7 @@ const PaymentSchema = new mongoose.Schema({
     ref: "User",
   },
   orderId: {
-    type: mongoose.Schema.Type.orderId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Order",
   },
   amount: {
@@ -16,7 +16,7 @@ const PaymentSchema = new mongoose.Schema({
   paymentMethod: {
     type: String,
   },
-  reviews: {
+  remarks: {
     type: String,
   },
 });

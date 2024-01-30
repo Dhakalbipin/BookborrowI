@@ -18,7 +18,7 @@ const bookSchema = new mongoose.Schema({
     type: Number,
   },
   aStock: {
-    type: String,
+    type: Number,
   },
   bookValue: {
     type: Number,

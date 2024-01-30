@@ -26,6 +26,14 @@ const orderSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  returnStatus: {
+    type: String,
+    enum: ["yes", "No"],
+  },
+  reminderEmail: {
+    type: Date,
+    default: Date.now,
+  },
 });
 orderSchema.plugin(UniqueValidator);
 module.exports = mongoose.model("Order", orderSchema);

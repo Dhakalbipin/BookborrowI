@@ -1,10 +1,11 @@
-const nodemailer = require("nodemailer");
+require("./email/index.js");
 require("dotenv").config();
 const file = require("express-fileupload");
 const express = require("express"); //Express variable call
 const app = express(); // call the express function and return value save to app
 const indexRouter = require("./Routes/index.js");
 const fileUpload = require("express-fileupload");
+const middleware = require("./utils/middleware.js");
 require("./models/index.js");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,22 +25,6 @@ app.get("/signup", (req, res, next) => {
   // '/' is home route
   res.render("signup");
 });
+app.use(middleware.unknownEndpoint);
+app.use(middleware.errorHandler);
 module.exports = app;
-// const transporter = nodemailer.createTransport({
-//   host: "smtp.gmai.com",
-//   port: 465,
-//   secure: true,
-//   auth: {
-//     // TODO: replace `user` and `pass` values from <https://forwardemail.net>
-//     user: ,
-//     pass: ,
-//   },
-// });
-// const mailOptions = {
-// from:
-// '"Fred Foo 👻" <foo@example.com>', // sender address
-//     to: "bar@example.com, baz@example.com", // list of receivers
-//     subject: "Hello ✔", // Subject line
-//     text: "Hello world?", // plain text body
-//     html: "<b>Hello world?</b>", // html body
-// }

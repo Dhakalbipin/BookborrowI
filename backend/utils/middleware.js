@@ -8,7 +8,7 @@ const tokenExtractor = (request, response, next) => {
     return next();
   }
   request.token = null;
-  return next();
+  return response.status(401).send(" Token missing you con not add a book");
 };
 
 const userExtractor = async (request, response, next) => {
@@ -29,11 +29,11 @@ const userExtractor = async (request, response, next) => {
     next(error);
   }
 };
-
+// end of the token extractor
+// error handler
 const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: "unknown endpoint" });
+  response.status(404).send({ error: " Route can not  find" });
 };
-module.exports = unknownEndpoint;
 const errorHandler = (error, request, response, next) => {
   console.log("---------");
 
@@ -47,8 +47,11 @@ const errorHandler = (error, request, response, next) => {
     return response.status(401).json({
       error: "token expired",
     });
+  } else if (error.name === "TypeError") {
+    return response
+      .status(401)
+      .json({ error: " this is the error from validator" });
   }
-
   next(error);
 };
 module.exports = {

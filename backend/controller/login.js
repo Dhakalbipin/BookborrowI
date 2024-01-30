@@ -34,6 +34,7 @@ module.exports = {
         userName: user.userName,
         name: user.name,
         id: user._id,
+        userType: user.userType,
       });
     } catch (error) {
       next(error);
