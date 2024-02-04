@@ -5,6 +5,7 @@ const bookRouter = require("../controller/book");
 const orderRouter = require("../controller/order");
 const paymentRouter = require("../controller/payment");
 const middleware = require("../utils/middleware");
+const emailController = require("../controller/emailcontroller");
 // ==============================================================
 //user routes
 router.get("/api/user", userRouter.list);
@@ -59,3 +60,6 @@ router.post(
 router.get("/api/payment/:id", paymentRouter.getPaymentById);
 router.delete("/api/payment", paymentRouter.deletePayment);
 module.exports = router;
+
+router.post("/api/new-email", emailController.sendNewOrderEmail);
+router.post("/api/deadline-email", emailController.sendDeadlineEmail);

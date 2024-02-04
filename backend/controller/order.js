@@ -1,31 +1,27 @@
-const book = require("../models/book");
 const Order = require("../models/order");
+const Book = require("../models/book");
 const User = require("../models/user");
 const emailController = require("../controller/emailcontroller");
-const { updateBook } = require("./book");
 
 module.exports = {
-  // / Controller to get all orders
   async orderList(req, res, next) {
     try {
-      console.log("testing");
       const orders = await Order.find({});
       res.json(orders);
     } catch (error) {
       next(error);
     }
   },
+
   async createOrder(req, res, next) {
     try {
-      const bookId = req.params.bookId;
-      const { address } = req.body;
+      const { bookId, address, OrderDate } = req.body;
       const loginUser = req.user;
-      console.log(req.body, "found user", req.user);
-      // Set rent date to the current date
+
       const rentDate = new Date();
-      // Calculate the deadline (7 days from the rent date)
       const deadline = new Date(rentDate);
       deadline.setDate(deadline.getDate() + 7);
+
       const newOrder = new Order({
         bookId,
         rentDate,
@@ -36,67 +32,66 @@ module.exports = {
 
       const savedOrder = await newOrder.save();
 
+      // Condition for sending email based on OrderDate (assuming it's 'rentDate')
       if (OrderDate === "rentDate") {
-        const subject = "Your Order";
-        const text = `Your Order has been successfully placed. Your order ID ${savedOrder._id} has an active rented book.`;
-        const book = await book.findById(savedOrder.bookId).populate("userId");
+        const subject = "Your Order has been Successfully placed";
+        const text = `Hello ${loginUser.fullName}, Your Order has been successfully placed. Your order ID ${savedOrder._id} has an active rented book.`;
+
+        const book = await Book.findById(savedOrder.bookId).populate("userId");
         if (book) {
           await emailController.sendNewOrderEmail(
             book.userId.email,
+            loginUser.fullName,
             savedOrder._id
           );
         }
       }
+
       res.status(201).json(savedOrder);
     } catch (error) {
       next(error);
     }
   },
-  async getid(req, res, next) {
-    try {
-      const id = req.params.id;
-      const order = await User.findById(id);
-      res.json(order);
-    } catch (error) {
-      next(error);
-    }
-  },
+
   async returnStatus(req, res, next) {
     const loginUser = req.user;
     const orderId = req.params.id;
-    console.log(loginUser);
+
     if (loginUser.userType === "admin") {
       try {
-        console.log("from if else");
-        const order = await Order.findByIdAndUpdate(orderId, {
+        const updatedOrder = await Order.findByIdAndUpdate(orderId, {
           returnStatus: "Yes",
         });
 
-        switch (OrderDate) {
+        // Condition for sending email based on OrderDate
+        switch (req.body.OrderDate) {
           case "rentDate":
-            const bookId = updatedOrder.bookId;
-            const rentDateBook = await book.findById(bookId).populate("userId");
+            const rentDateBook = await Book.findById(
+              updatedOrder.bookId
+            ).populate("userId");
             if (rentDateBook) {
               await emailController.sendNewOrderEmail(
                 rentDateBook.userId.email,
-                rentDateBook.userid.fullName,
-                updateBook._id
+                loginUser.fullName,
+                updatedOrder._id
               );
             }
             break;
           case "deadline":
-            const deadlineOrder = await book
-              .findById(updatedOrder.bookId)
-              .populate("userId");
+            const deadlineOrder = await Book.findById(
+              updatedOrder.bookId
+            ).populate("userId");
             if (deadlineOrder) {
               await emailController.sendDeadlineEmail(
                 deadlineOrder.userId.email,
-                updateBook._id
+                updatedOrder.bookId,
+                updatedOrder._id
               );
             }
             break;
         }
-        res.status(201).send(order);
+
+        res.status(201).json(updatedOrder);
       } catch (error) {
         next(error);
       }
@@ -104,13 +99,14 @@ module.exports = {
       res.status(403).send("Not Allowed");
     }
   },
+
   async deleteOrder(req, res, next) {
     try {
       const id = req.params.id;
       const deletedOrder = await Order.findByIdAndDelete(id);
 
       if (!deletedOrder) {
-        return res.status(404).send("User not found");
+        return res.status(404).send("Order not found");
       }
 
       res.json(deletedOrder);

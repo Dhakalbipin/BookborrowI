@@ -11,24 +11,31 @@ const transporter = nodemailer.createTransport({
 
 const emailService = {
   async sendEmail(email, subject, text) {
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: subject,
-      text: text,
-    });
+    try {
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: subject,
+        text: text,
+      });
+      console.log("Email sent successfully.");
+    } catch (error) {
+      console.error("Error sending email:", error);
+      throw error;
+    }
   },
 };
+
 module.exports = {
   async sendNewOrderEmail(email, name, orderId) {
-    (subject = "Your Order has been Sucessufully placed"),
-      (text = `Hello ${name} jee, Your Order has been successfully placed. Your order ID ${orderId} has an active rented book.`);
-    await emailService.sendNewOrderEmail(email, subject, text);
+    const subject = "Your Order has been Successfully placed";
+    const text = `Hello ${name}, Your Order has been successfully placed. Your order ID ${orderId} has an active rented book.`;
+    await emailService.sendEmail(email, subject, text);
   },
 
   async sendDeadlineEmail(email, bookId, orderId) {
-    (subject = "Order Deadline Reminder"),
-      (text = `Reminder: The deadline for returning the book "${bookId}" (Order ID: ${orderId}) is approaching within 24 hours. Please return it on time.`);
-    await emailService.sendEmail(email, bookId, orderId);
+    const subject = "Order Deadline Reminder";
+    const text = `Reminder: The deadline for returning the book "${bookId}" (Order ID: ${orderId}) is approaching within 24 hours. Please return it on time.`;
+    await emailService.sendEmail(email, subject, text);
   },
 };
