@@ -38,6 +38,12 @@ router.post(
   middleware.userExtractor,
   orderRouter.createOrder
 );
+router.put(
+  "/api/order/:id",
+  middleware.tokenExtractor,
+  middleware.userExtractor,
+  orderRouter.returnStatus
+);
 router.get("/api/order/:id", orderRouter.getid);
 router.delete("/api/order/:id", orderRouter.deleteOrder);
 // ======================== end of the payment router===========

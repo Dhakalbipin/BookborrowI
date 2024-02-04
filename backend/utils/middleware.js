@@ -20,7 +20,7 @@ const userExtractor = async (request, response, next) => {
       }
 
       request.user = await User.findById(decodedToken.id);
-      console.log(request.user);
+      console.log(request.user, " from user extractor");
       return next();
     }
     request.user = null;

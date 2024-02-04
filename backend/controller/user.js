@@ -11,7 +11,6 @@ module.exports = {
   },
   async create(req, res, next) {
     try {
-      console.log("test");
       const {
         name,
         userName,
@@ -22,7 +21,6 @@ module.exports = {
         amount,
         holdingAmount,
         userHistory,
-        userType,
       } = req.body;
       console.log(req.body);
       if (password.length < 8) {
@@ -41,7 +39,6 @@ module.exports = {
         amount,
         holdingAmount,
         userHistory,
-        userType,
       });
       const savedUser = await user.save();
       // res.status(201).json(savedUser);

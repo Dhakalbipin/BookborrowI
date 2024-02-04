@@ -3,7 +3,7 @@
   </head>
   <body>
     <%- include('../partials/header'); %>
-    <img src="images/banner.jpg" alt="banner">
+    <img src="/images/banner.jpg" alt="banner">
     <h1>What is book brrow system?</h1>
     <P>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia ratione sint, dolores corporis magnam alias accusantium ex officiis amet unde quis dicta nihil non sequi est earum consectetur deleniti reprehenderit! Dolor animi iusto excepturi asperiores, quos voluptatum eveniet, officiis fuga architecto quas accusamus unde veritatis reiciendis. Consequatur saepe dolorum error recusandae dicta dignissimos esse obcaecati nobis et non enim, numquam, quae ex minima voluptatum quisquam dolorem quo odit cumque adipisci aliquam. Facere natus, alias amet nam laboriosam voluptas asperiores in. Omnis cumque quasi veritatis delectus qui ut provident vel veniam laborum magni. Facere consectetur, animi enim, possimus quas dolore deserunt, earum voluptates cum aut dolorum rerum doloremque quam? Unde exercitationem temporibus eaque nulla in voluptatibus ad, quas voluptatum dolor ipsa doloremque, nemo cupiditate. Tempore dignissimos, delectus esse debitis maiores nemo dicta voluptatibus iure earum, voluptate libero pariatur consequatur incidunt quam accusantium? Nemo reiciendis nulla eaque corrupti accusamus, optio consectetur animi repellendus, voluptatibus omnis, eligendi obcaecati est distinctio voluptatum quisquam repudiandae perspiciatis dolor iusto reprehenderit facilis. Illo molestiae ad, nisi cupiditate sunt vitae ex iusto modi accusantium obcaecati adipisci. A distinctio explicabo dolor fuga ratione. Consequuntur sapiente velit cum eos fuga, ullam repellat nostrum corporis, exercitationem soluta, consectetur placeat doloribus autem!</P>
     <h2>What are the advantage of book borrow system?</h2>
@@ -20,6 +20,15 @@
 
       </ul>
     </div>
+    <p>Token: <%= token %></p>
     <%- include('../partials/footer'); %>
+  <script>
+  <% if (token) { %>
+    console.log(<%= token %>);
+    // localStorage.setItem ("token", token)
+
+  <% } %>
+</script>
+
   </body>
 </html>

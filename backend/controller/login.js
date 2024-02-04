@@ -2,6 +2,7 @@ require("dotenv").config();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
+const { returnStatus } = require("./order");
 module.exports = {
   async login(req, res, next) {
     try {
@@ -29,13 +30,14 @@ module.exports = {
         expiresIn: 60 * 30,
       });
       // res.redirect("/");
-      res.status(200).send({
-        token,
-        userName: user.userName,
-        name: user.name,
-        id: user._id,
-        userType: user.userType,
-      });
+      res.render("index", { token });
+      // res.status(200).send({
+      //   token,
+      //   userName: user.userName,
+      //   name: user.name,
+      //   id: user._id,
+      //   userType: user.userType,
+      // });
     } catch (error) {
       next(error);
     }

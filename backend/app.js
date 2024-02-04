@@ -1,4 +1,3 @@
-require("./email/index.js");
 require("dotenv").config();
 const file = require("express-fileupload");
 const express = require("express"); //Express variable call
@@ -16,7 +15,7 @@ app.set("views", "templates/views");
 app.use("/", indexRouter);
 app.get("/", (req, res, next) => {
   // '/' is home route
-  res.render("index");
+  res.render("index", { token: null });
 });
 app.get("/login", (req, res, next) => {
   res.render("login");

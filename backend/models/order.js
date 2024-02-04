@@ -28,11 +28,11 @@ const orderSchema = new mongoose.Schema({
   },
   returnStatus: {
     type: String,
-    enum: ["yes", "No"],
+    default: "No",
+    enum: ["Yes", "No"],
   },
   reminderEmail: {
     type: Date,
-    default: Date.now,
   },
 });
 orderSchema.plugin(UniqueValidator);
