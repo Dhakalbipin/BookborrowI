@@ -30,14 +30,14 @@ module.exports = {
         expiresIn: 60 * 30,
       });
       // res.redirect("/");
-      res.render("index", { token });
-      // res.status(200).send({
-      //   token,
-      //   userName: user.userName,
-      //   name: user.name,
-      //   id: user._id,
-      //   userType: user.userType,
-      // });
+      // res.render("index", { token });
+      res.status(200).send({
+        token,
+        userName: user.userName,
+        name: user.name,
+        id: user._id,
+        userType: user.userType,
+      });
     } catch (error) {
       next(error);
     }

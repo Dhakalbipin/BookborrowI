@@ -24,8 +24,8 @@
     <%- include('../partials/footer'); %>
   <script>
   <% if (token) { %>
-    console.log(<%= token %>);
-    // localStorage.setItem ("token", token)
+    // console.log(<%= token %>);
+  localStorage.setItem ("token", token)
 
   <% } %>
 </script>

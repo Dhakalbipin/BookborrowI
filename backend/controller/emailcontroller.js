@@ -1,4 +1,3 @@
-const { name } = require("ejs");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 

@@ -1,8 +1,6 @@
-const rexpress = require("express");
 const book = require("../models/book");
 const Order = require("../models/order");
 const User = require("../models/user");
-const { sendMail } = require("./emailcontroller");
 const emailController = require("../controller/emailcontroller");
 const { updateBook } = require("./book");
 
@@ -38,7 +36,7 @@ module.exports = {
 
       const savedOrder = await newOrder.save();
 
-      if (OrderDate === "Date.now") {
+      if (OrderDate === "rentDate") {
         const subject = "Your Order";
         const text = `Your Order has been successfully placed. Your order ID ${savedOrder._id} has an active rented book.`;
         const book = await book.findById(savedOrder.bookId).populate("userId");
@@ -74,7 +72,7 @@ module.exports = {
           returnStatus: "Yes",
         });
 
-        switch (rentDate) {
+        switch (OrderDate) {
           case "rentDate":
             const bookId = updatedOrder.bookId;
             const rentDateBook = await book.findById(bookId).populate("userId");
@@ -93,7 +91,6 @@ module.exports = {
             if (deadlineOrder) {
               await emailController.sendDeadlineEmail(
                 deadlineOrder.userId.email,
-                updateBook.title,
                 updateBook._id
               );
             }
